@@ -1,4 +1,5 @@
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from flask import Flask
 
 app = Flask(__name__)
@@ -9,7 +10,7 @@ def index():
 
 @app.route("/time")
 def get_time():
-    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    current_time = datetime.now(ZoneInfo("America/New_York")).strftime("%I:%M:%S %p")
     return f"Current Time: {current_time}\n"
 
 app.run(host='0.0.0.0',
